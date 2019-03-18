@@ -67,15 +67,24 @@ function update() {
     /* Condition pour savoir si utiliser le LEAP ou alors les touches du clavier */
 
     if (LEAP.connected == true){
+        // player.body.velocity.x = 100 * (LEAP.rotation * -1);
+
+        player.body.velocity.x = 0;
+
+        if (LEAP.position.x > game.world.width * 0.5 + 350) {
+            player.body.velocity.x = 150;
+        } else if (LEAP.position.x < game.world.width * 0.5 - 350) {
+            player.body.velocity.x = -150;
+        }
+
         if (facing != 'left')
         {
             player.animations.play('left');
             facing = 'left';
-            player.body.velocity.x = -LEAP.position.x;
         }else if (facing != 'right'){
             player.animations.play('right');
             facing = 'right';
-            player.body.velocity.x = LEAP.position.x;
+            // player.body.position.x = LEAP.position.x;
         }else{
             if (facing != 'idle'){
                 player.animations.stop();
@@ -87,6 +96,13 @@ function update() {
                 facing = 'idle';
             }
         }
+
+        if (LEAP.grab && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer)
+        {
+            player.body.velocity.y = -500;
+            jumpTimer = game.time.now + 750;
+        }
+
     }else{
         if (cursors.left.isDown){
 
@@ -126,7 +142,6 @@ function update() {
                 facing = 'idle';
             }
         }
-    }
 
         /* Condition pour gérer les sauts dans tous les cas  */
         
@@ -135,6 +150,7 @@ function update() {
             player.body.velocity.y = -500;
             jumpTimer = game.time.now + 750;
         }
+    }
 
     }
 

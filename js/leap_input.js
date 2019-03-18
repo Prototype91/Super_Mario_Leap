@@ -27,10 +27,13 @@ controller.on('deviceDisconnected', function() {
 controller.on('frame', function(frame) {
     let hand = frame.hands[0];
     if(!hand) return;
+    // console.log(hand._rotation);
 
     const palm = get2dCoords(hand.stabilizedPalmPosition, frame);
     LEAP.position.x = palm.x;
     LEAP.position.y = palm.y;
+    // LEAP.rotation = hand._rotation[1];
+    LEAP.grab = hand.grabStrength === 1
 })
 
 
