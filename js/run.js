@@ -1,46 +1,121 @@
-console.log("Début du jeu !");
+let game = new Phaser.Game(960, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
-x = 40;
-pos = 0;
-dx = 0;
-dy = 0;
-t = -50;
-y = 170;
-sign = '';
+function preload() {
 
-//Déplacements :
-const onKeyDown = function (event) {
-    switch (event.keyCode) {
-        case 38: // up
-            console.log('up');
-            break;
-        case 37: // left
-            console.log('left');
-            break;
-        case 40: // down
-            console.log('down');
-            break;
-        case 39: // right$
-            console.log('right');
-            break;
+    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    game.load.image('scene', 'assets/visuel3.jpg');
+    game.load.image('ground', 'assets/ground.jpg');
+
+}
+
+let player;
+let facing = 'right';
+let jumpTimer = 0;
+let cursors;
+let jumpButton;
+let scene;
+let ground;
+
+function create() {
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    game.world.setBounds(0, 0, 1500, 600);
+
+    scene = game.add.tileSprite(0, 0, 960, 600, 'scene');
+
+    game.physics.arcade.gravity.y = 300;
+
+    player = game.add.sprite(32, 320, 'dude');
+    game.physics.enable(player, Phaser.Physics.ARCADE);
+
+    player.body.collideWorldBounds = true;
+    player.body.gravity.y = 1000;
+    player.body.maxVelocity.y = 500;
+    player.body.setSize(20, 32, 5, 16);
+
+    player.animations.add('left', [0, 1, 2, 3], 10, true);
+    player.animations.add('turn', [4], 20, true);
+    player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+    ground = game.add.tileSprite(0, 545, 1000, 55, 'ground');
+
+    game.physics.enable([ player, ground ], Phaser.Physics.ARCADE);
+
+    player.body.collideWorldBounds = true;
+    //player.body.bounce.set(1);
+
+    ground.body.collideWorldBounds = true;
+    ground.body.immovable = true;
+    ground.body.allowGravity = false;
+
+    cursors = game.input.keyboard.createCursorKeys();
+    jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+}
+
+function update() {
+
+    game.physics.arcade.collide(player, ground);
+
+    player.body.velocity.x = 0;
+
+    game.camera.follow(player);
+
+    if (cursors.left.isDown)
+    {
+        player.body.velocity.x = -150;
+
+        if (facing != 'left')
+        {
+            player.animations.play('left');
+            facing = 'left';
+        }
     }
-};
+    else if (cursors.right.isDown)
+    {
+        player.body.velocity.x = 150;
 
-var onKeyUp = function (event) {
-    switch (event.keyCode) {
-        case 38: // up
-            console.log('up');  
-            break;
-        case 37: // left
-            console.log('left');
-            break;
-        case 40: // down
-        console.log('down');
-            break;
-        case 39: // right
-            console.log('right');
-            break;
+        if (facing != 'right')
+        {
+            player.animations.play('right');
+            facing = 'right';
+        }
     }
-};
-document.addEventListener('keydown', onKeyDown, false);
-document.addEventListener('keyup', onKeyUp, false);
+    else
+    {
+        if (facing != 'idle')
+        {
+            player.animations.stop();
+
+            if (facing == 'left')
+            {
+                player.frame = 0;
+            }
+            else
+            {
+                player.frame = 5;
+            }
+
+            facing = 'idle';
+        }
+    }
+
+    /* Condition pour gérer les sauts dans tous les cas  */
+    
+    if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer)
+    {
+        player.body.velocity.y = -500;
+        jumpTimer = game.time.now + 750;
+    }
+
+}
+
+function render () {
+
+    // game.debug.text(game.time.physicsElapsed, 32, 32);
+    game.debug.body(player);
+    game.debug.body(ground);
+    //game.debug.bodyInfo(player, 16, 24);
+
+}
