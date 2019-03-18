@@ -20,7 +20,7 @@ function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    game.world.setBounds(0, 0, 1500, 600);
+    game.world.setBounds(0, 0, 1000, 600);
 
     scene = game.add.tileSprite(0, 0, 960, 600, 'scene');
 
@@ -54,6 +54,8 @@ function create() {
 
 }
 
+/* Fonction uptade gére ici les collisions player / sol puis le déplacement de la caméra */
+
 function update() {
 
     game.physics.arcade.collide(player, ground);
@@ -62,54 +64,79 @@ function update() {
 
     game.camera.follow(player);
 
-    if (cursors.left.isDown)
-    {
-        player.body.velocity.x = -150;
+    /* Condition pour savoir si utiliser le LEAP ou alors les touches du clavier */
 
+    if (LEAP.connected == true){
         if (facing != 'left')
         {
             player.animations.play('left');
             facing = 'left';
-        }
-    }
-    else if (cursors.right.isDown)
-    {
-        player.body.velocity.x = 150;
-
-        if (facing != 'right')
-        {
+            player.body.velocity.x = -LEAP.position.x;
+        }else if (facing != 'right'){
             player.animations.play('right');
             facing = 'right';
-        }
-    }
-    else
-    {
-        if (facing != 'idle')
-        {
-            player.animations.stop();
-
-            if (facing == 'left')
-            {
+            player.body.velocity.x = LEAP.position.x;
+        }else{
+            if (facing != 'idle'){
+                player.animations.stop();
+            if (facing == 'left'){
                 player.frame = 0;
-            }
-            else
-            {
+            }else{
                 player.frame = 5;
             }
+                facing = 'idle';
+            }
+        }
+    }else{
+        if (cursors.left.isDown){
 
-            facing = 'idle';
+            player.body.velocity.x = -150;
+
+            if (facing != 'left')
+            {
+                player.animations.play('left');
+                facing = 'left';
+            }
+        }
+        else if (cursors.right.isDown)
+        {
+            player.body.velocity.x = 150;
+
+            if (facing != 'right')
+            {
+                player.animations.play('right');
+                facing = 'right';
+            }
+        }
+        else
+        {
+            if (facing != 'idle')
+            {
+                player.animations.stop();
+
+                if (facing == 'left')
+                {
+                    player.frame = 0;
+                }
+                else
+                {
+                    player.frame = 5;
+                }
+
+                facing = 'idle';
+            }
         }
     }
 
-    /* Condition pour gérer les sauts dans tous les cas  */
-    
-    if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer)
-    {
-        player.body.velocity.y = -500;
-        jumpTimer = game.time.now + 750;
-    }
+        /* Condition pour gérer les sauts dans tous les cas  */
+        
+        if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer)
+        {
+            player.body.velocity.y = -500;
+            jumpTimer = game.time.now + 750;
+        }
 
-}
+    }
 
 function render () {
 

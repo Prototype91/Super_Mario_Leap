@@ -13,7 +13,7 @@ p{
     position : absolute; /* Permet un positionnement avec aucun espace vide après être positionné*/
     top: 0%; left: 45%;
     /*transform : translate(-50%, -50%);*/
-    font-style:italic;
+    font-style: italic;
     font-size:60px;
 }
 
