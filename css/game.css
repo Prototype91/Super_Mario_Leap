@@ -7,3 +7,9 @@ body{
     background-position: center;
     background-size: 80%;
 }
+
+mario{
+    position:absolute;
+    top:170px;
+    left:40px;
+}
