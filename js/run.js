@@ -66,7 +66,9 @@ function create() {
 function update() {
 
     game.physics.arcade.collide(player, ground);
-    game.physics.arcade.collide(player, platformsGroup);
+    game.physics.arcade.collide(player, platformsGroup, (player, platform) => {
+        // platform.kill();
+    });
     game.physics.arcade.collide(player, peach);
 
     game.camera.follow(player);
