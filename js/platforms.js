@@ -4,6 +4,8 @@ function platforms_create() {
     platformsGroup = game.add.physicsGroup();
 
     const PLATFORM_POSITIONS = [
+        [20, 450, 24],
+        [45, 450, 24],
         [100, 450, 24],
         [300, 400, 24],
         [500, 400, 24],

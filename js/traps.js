@@ -3,13 +3,19 @@ function traps_create() {
 
     trapsGroup = game.add.physicsGroup();
 
+    let x = 0;
+    let y = 520;
+    let width = 111;
+
     const TRAP_POSITIONS = [
-        [200, 520, 111]
+        [x, y, width]
     ]
 
-    for (let i = 0; i < TRAP_POSITIONS.length; i++) {
+    for (let i = 0; i < 25; i++) {
         let [x, y, width] = TRAP_POSITIONS[i];
+        TRAP_POSITIONS.push([TRAP_POSITIONS[i][0] + 120, y, width]);
         let s = new Phaser.TileSprite(game, x, y, width, 111, 'spikes');
+
         trapsGroup.add(s);
     }
 
