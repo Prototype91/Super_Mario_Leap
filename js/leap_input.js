@@ -25,6 +25,8 @@ controller.on('deviceDisconnected', function() {
 });
 
 controller.on('frame', function(frame) {
+    LEAP.connected = true;
+    
     let hand = frame.hands[0];
     if(!hand) return;
     // console.log(hand._rotation);
