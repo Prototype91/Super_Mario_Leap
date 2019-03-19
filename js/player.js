@@ -5,7 +5,7 @@ const MOVE_AREA = (window.innerWidth / 4);
 function player_create() {
 
     player = game.add.sprite(32, 320, 'dude');
-    peach = game.add.sprite(850, 200, 'peach')
+    peach = game.add.sprite(600, 200, 'peach')
 
     game.physics.enable(player, Phaser.Physics.ARCADE);
     game.physics.enable(peach, Phaser.Physics.ARCADE);
@@ -15,6 +15,8 @@ function player_create() {
     player.body.maxVelocity.y = 500;
     player.body.setSize(20, 32, 5, 16);
 
+    //Création de peach :
+    
     peach.body.collideWorldBounds = true;
     peach.body.gravity.y = 1000;
     peach.body.maxVelocity.y = 500;
