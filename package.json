@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "leapjs": "^0.6.4",
+    "live-server": "^1.2.1",
     "phaser": "^2.6.2"
   }
 }
