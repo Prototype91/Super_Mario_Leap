@@ -1,3 +1,5 @@
+//Fonction qui créé toutes les briques :
+
 function platforms_create() {
     // Création des plateformes
 
@@ -18,6 +20,8 @@ function platforms_create() {
         [850, 250, 24],
         // ... 465
     ];
+
+    //Boucle de génération des briques :
 
     for (let i = 0; i < PLATFORM_POSITIONS.length; i++) {
         let [x, y, width] = PLATFORM_POSITIONS[i];

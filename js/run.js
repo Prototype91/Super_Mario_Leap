@@ -41,23 +41,6 @@ function create() {
     platforms_create();
     traps_create();
 
-    //ground = game.add.tileSprite(0, 545, 1000, 55, 'ground');
-    //brique = game.add.tileSprite(850, 250, 24, 24, 'brique');
-    //spikes = game.add.tileSprite(850, 250, 120, 120, 'spikes');
-
-
-    //game.physics.enable([ player, ground ], Phaser.Physics.ARCADE);
-    //game.physics.enable([ peach, brique ], Phaser.Physics.ARCADE);
-
-    //ground.body.collideWorldBounds = true;
-    //ground.body.immovable = true;
-    //ground.body.allowGravity = false;
-
-    //brique.body.collideWorldBounds = true;
-    //brique.body.immovable = true;
-    //brique.body.allowGravity = false;
-    //brique.scale.setTo(0.4, 0.4);
-
     peach.body.collideWorldBounds = true;
     peach.body.immovable = false;
     peach.body.allowGravity = true;
@@ -97,7 +80,7 @@ function update() {
 //Fonction du rendu de jeu :
 function render () {
 
-    // game.debug.text(game.time.physicsElapsed, 32, 32);
+    //game.debug.text(game.time.physicsElapsed, 32, 32);
     //game.debug.body(player);
     //game.debug.body(ground);
     //game.debug.body(peach);

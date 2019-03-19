@@ -20,7 +20,7 @@ function player_create() {
     peach.body.collideWorldBounds = true;
     peach.body.gravity.y = 1000;
     peach.body.maxVelocity.y = 500;
-    peach.scale.setTo(0.03, 0.03); // -- gérer la taille de la princesse 
+    peach.scale.setTo(0.025, 0.025); // -- gérer la taille de la princesse 
 
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('turn', [4], 20, true);

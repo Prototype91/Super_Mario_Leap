@@ -1,3 +1,4 @@
+//Création du Leap :
 const LEAP = {
 
     position: {
@@ -12,6 +13,7 @@ const LEAP = {
 const controller = new Leap.Controller();
 controller.connect();
 
+//Vérifier que le leap motion est bien connecté :
 controller.on('deviceStreaming', function() {
 
     LEAP.connected = true;

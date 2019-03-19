@@ -1,3 +1,4 @@
+//Fonction qui génère les spikes (pièges) :
 function traps_create() {
     // Création des plateformes
 
