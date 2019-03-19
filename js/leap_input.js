@@ -38,7 +38,6 @@ controller.on('frame', function(frame) {
     LEAP.grab = hand.grabStrength === 1
 })
 
-
 /**
  * Transforme les coordonnées 3D récupérée par le Leap en coordonnées 2D pour un <canvas> web
  * @param {Array} leapPosition Tableau de coordonnées 3D [x, y, z]

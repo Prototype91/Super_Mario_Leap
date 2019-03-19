@@ -1,5 +1,7 @@
+//Création du jeu avce phaser :
 let game = new Phaser.Game(960, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
+//Fonction preload du jeu :
 function preload() {
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
     game.load.image('scene', 'assets/visuel3.jpg');
@@ -9,6 +11,7 @@ function preload() {
     game.load.image('spikes', 'assets/spikes.png');
 }
 
+//Créations des variables :
 let player;
 let facing = 'right';
 let jumpTimer = 0;
@@ -18,10 +21,12 @@ let scene;
 let ground;
 let platformsGroup;
 let platformSprite;
+let trapsGroup;
 let peach; 
 let brique; 
 let spikes;
 
+//Fonction permettant la création du jeu :
 function create() {
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -34,6 +39,7 @@ function create() {
 
     player_create();
     platforms_create();
+    traps_create();
 
     ground = game.add.tileSprite(0, 545, 1000, 55, 'ground');
     brique = game.add.tileSprite(850, 250, 24, 24, 'brique');
@@ -66,21 +72,23 @@ function create() {
 function update() {
 
     game.physics.arcade.collide(player, ground);
-    game.physics.arcade.collide(player, platformsGroup, (player, platform) => {
-        // platform.kill();
+    game.physics.arcade.collide(player, platformsGroup);
+    game.physics.arcade.collide(player, trapsGroup, (player, platform) => {
+        player.kill();
+        alert("GAME OVER !");
     });
+    
     game.physics.arcade.collide(player, peach);
 
     game.camera.follow(player);
 
     ground.position.x = game.camera.position.x;
 
-    /* Condition pour savoir si utiliser le LEAP ou alors les touches du clavier */
-
     player_update();
 
 }
 
+//Fonction du rendu de jeu :
 function render () {
 
     // game.debug.text(game.time.physicsElapsed, 32, 32);

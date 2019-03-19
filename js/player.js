@@ -26,6 +26,7 @@ function player_create() {
 }
 
 // -- Function update du joueur 
+/* Condition pour savoir si utiliser le LEAP ou alors les touches du clavier */
 function player_update()  {
 
     player.body.velocity.x = 0;

@@ -10,18 +10,9 @@ function platforms_create() {
         // ... 465
     ];
 
-    const TRAP_POSITIONS = [
-        [200, 520, 111]
-    ]
-
     for (let i = 0; i < PLATFORM_POSITIONS.length; i++) {
         let [x, y, width] = PLATFORM_POSITIONS[i];
         let s = new Phaser.TileSprite(game, x, y, width, 24, 'brique');
-        platformsGroup.add(s);
-    }
-    for (let i = 0; i < TRAP_POSITIONS.length; i++) {
-        let [x, y, width] = TRAP_POSITIONS[i];
-        let s = new Phaser.TileSprite(game, x, y, width, 111, 'spikes');
         platformsGroup.add(s);
     }
 
