@@ -4,7 +4,7 @@ function traps_create() {
     trapsGroup = game.add.physicsGroup();
 
     let x = 0;
-    let y = 520;
+    let y = 545;
     let width = 111;
 
     const TRAP_POSITIONS = [

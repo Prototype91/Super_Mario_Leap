@@ -4,8 +4,8 @@ let game = new Phaser.Game(960, 600, Phaser.CANVAS, 'phaser-example', { preload:
 //Fonction preload du jeu :
 function preload() {
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-    game.load.image('scene', 'assets/visuel3.jpg');
-    game.load.image('ground', 'assets/ground.jpg');
+    game.load.image('scene', 'assets/scrollingBackground2.jpg');
+    //game.load.image('ground', 'assets/ground.jpg');
     game.load.image('peach', 'assets/peach.png');
     game.load.image('brique', 'assets/brique.png');
     game.load.image('spikes', 'assets/spikes.png');
@@ -18,7 +18,7 @@ let jumpTimer = 0;
 let cursors;
 let jumpButton;
 let scene;
-let ground;
+//let ground;
 let platformsGroup;
 let platformSprite;
 let trapsGroup;
@@ -41,17 +41,17 @@ function create() {
     platforms_create();
     traps_create();
 
-    ground = game.add.tileSprite(0, 545, 1000, 55, 'ground');
+    //ground = game.add.tileSprite(0, 545, 1000, 55, 'ground');
     //brique = game.add.tileSprite(850, 250, 24, 24, 'brique');
     //spikes = game.add.tileSprite(850, 250, 120, 120, 'spikes');
 
 
-    game.physics.enable([ player, ground ], Phaser.Physics.ARCADE);
+    //game.physics.enable([ player, ground ], Phaser.Physics.ARCADE);
     //game.physics.enable([ peach, brique ], Phaser.Physics.ARCADE);
 
-    ground.body.collideWorldBounds = true;
-    ground.body.immovable = true;
-    ground.body.allowGravity = false;
+    //ground.body.collideWorldBounds = true;
+    //ground.body.immovable = true;
+    //ground.body.allowGravity = false;
 
     //brique.body.collideWorldBounds = true;
     //brique.body.immovable = true;
@@ -71,7 +71,7 @@ function create() {
 
 function update() {
 
-    game.physics.arcade.collide(player, ground);
+    //game.physics.arcade.collide(player, ground);
     game.physics.arcade.collide(player, platformsGroup);
     game.physics.arcade.collide(peach, platformsGroup);
     game.physics.arcade.collide(peach, trapsGroup);
@@ -88,7 +88,7 @@ function update() {
 
     game.camera.follow(player);
 
-    ground.position.x = game.camera.position.x;
+    //ground.position.x = game.camera.position.x;
 
     player_update();
 
