@@ -33,6 +33,8 @@ function platforms_create() {
         platformsGroup.add(s);
     }
 
+    
+
     // -- Gérer la gavité et l'immobilité des éléments briques
     platformsGroup.forEach(item => {
         item.body.immovable = true;

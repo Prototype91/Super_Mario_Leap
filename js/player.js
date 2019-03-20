@@ -47,23 +47,17 @@ function player_update()  {
 
 // -- Function déplacement du leap 
 function player_move_leap() {
-    // -- player.body.velocity.x = 100 * (LEAP.rotation * -1);
 
+    // -- Déplacement du leap motion
     if (LEAP.position.x > game.camera.width * 0.5 + MOVE_AREA) {
         player.body.velocity.x = 150;
-    } else if (LEAP.position.x < game.camera.width * 0.5 - MOVE_AREA) {
-        player.body.velocity.x = -150;
-    }
-
-    if (facing != 'left')
-    {
-        player.animations.play('left');
-        facing = 'left';
-    }else if (facing != 'right'){
         player.animations.play('right');
         facing = 'right';
-        // -- player.body.position.x = LEAP.position.x;
-    }else{
+    } else if (LEAP.position.x < game.camera.width * 0.5 - MOVE_AREA) {
+        player.body.velocity.x = -150;
+        player.animations.play('left');
+        facing = 'left';
+    } else{
         if (facing != 'idle'){
             player.animations.stop();
         if (facing == 'left'){
