@@ -4,24 +4,27 @@ const MOVE_AREA = (window.innerWidth / 4);
 // -- Function création du joueur
 function player_create() {
 
+    // -- Ajouts des sprites au jeux
     player = game.add.sprite(32, 320, 'dude');
     peach = game.add.sprite(600, 200, 'peach')
 
+    // -- Activation du stystème Physics.ARCADE sur le player et peach 
     game.physics.enable(player, Phaser.Physics.ARCADE);
     game.physics.enable(peach, Phaser.Physics.ARCADE);
 
+    // -- Collision / Gravité / Vélocité pour player / Taille 
     player.body.collideWorldBounds = true;
     player.body.gravity.y = 1000;
     player.body.maxVelocity.y = 500;
     player.body.setSize(20, 32, 5, 16);
 
-    //Création de peach :
-    
+    // -- Collision / Gravité / Vélocité pour peach / Taille
     peach.body.collideWorldBounds = true;
     peach.body.gravity.y = 1000;
     peach.body.maxVelocity.y = 500;
     peach.scale.setTo(0.025, 0.025); // -- gérer la taille de la princesse 
 
+    // -- Permet de gérer les différents sprites de notre player 
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('turn', [4], 20, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
