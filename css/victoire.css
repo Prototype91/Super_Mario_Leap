@@ -9,8 +9,8 @@ body {
 
 #victoire{
     position: relative;
-    top: -3rem;
-    left : -13%;
+    top: 10px;
+    left : 0.5%;
     font-style: italic;
     font-size: 250%;
     color: black;
@@ -27,8 +27,8 @@ p{
 
 span{
     position: absolute;
-    top:80%;
-    left: 44%;
+    top:70%;
+    left: 45%;
     font-style: italic;
     font-size: 120%;
     color: black;
@@ -39,5 +39,5 @@ span{
     position : absolute;
     top: 94%; left: 1%;
     font-style : italic;
-    font-size : 30px;
+    font-size : 20px;
 }

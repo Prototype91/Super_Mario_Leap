@@ -18,7 +18,7 @@ p{
 
 span{
     position: absolute;
-    top:80%;
+    top:50%;
     left: 44%;
     font-style: italic;
     font-size: 120%;
@@ -30,5 +30,5 @@ span{
     position : absolute;
     top: 94%; left: 1%;
     font-style : italic;
-    font-size : 30px;
+    font-size : 20px;
 }
