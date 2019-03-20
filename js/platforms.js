@@ -6,6 +6,7 @@ function platforms_create() {
 
     // -- Tableau des positions de nos briques
     const PLATFORM_POSITIONS = [
+        [0, 450, 24],
         [20, 450, 24],
         [45, 450, 24],
         [100, 450, 24],
@@ -21,8 +22,17 @@ function platforms_create() {
         [800, 400, 24],
         [900, 400, 24],
         [1000, 400, 24],
-        [850, 250, 24],
-        [950, 250, 24],
+        [850, 400, 24],
+        [950, 400, 24],
+        [1050, 400, 24],
+        [1150, 400, 24],
+        [1250, 400, 24],
+        [1350, 400, 24],
+        [1450, 400, 24],
+        [1550, 400, 24],
+        [1650, 400, 24],
+        [1750, 400, 24],
+        [1850, 400, 24],
         // ... 465
     ];
 
@@ -32,8 +42,6 @@ function platforms_create() {
         let s = new Phaser.TileSprite(game, x, y, width, 24, 'brique');
         platformsGroup.add(s);
     }
-
-    
 
     // -- Gérer la gavité et l'immobilité des éléments briques
     platformsGroup.forEach(item => {

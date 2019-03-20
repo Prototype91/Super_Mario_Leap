@@ -4,7 +4,7 @@ let game = new Phaser.Game(960, 600, Phaser.CANVAS, 'phaser-example', { preload:
 // -- Fonction preload du jeu :
 function preload() {
     // -- Chargement de nos images utilisées dans le jeux
-    game.load.spritesheet('dude', 'assets/img/dude.png', 32, 48);
+    game.load.spritesheet('mario', 'assets/img/mario_final.png', 40, 40);
     game.load.image('background', 'assets/img/background.jpg');
     game.load.image('peach', 'assets/img/peach.png');
     game.load.image('brique', 'assets/img/brique.png');
@@ -39,10 +39,10 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     // -- Dimension du monde
-    game.world.setBounds(0, 0, 3000, 600);
+    game.world.setBounds(0, 0, 1920, 600);
 
     // -- Affichage de notre background
-    background = game.add.tileSprite(0, 0, 3000, 600, 'background');
+    background = game.add.tileSprite(0, 0, 1920, 600, 'background');
 
     // -- On définit la gravity en y 
     game.physics.arcade.gravity.y = 300;
@@ -145,7 +145,7 @@ function update() {
 function render() {
 
     //game.debug.text(game.time.physicsElapsed, 32, 32);
-    //game.debug.body(player);
+    // game.debug.body(player);
     //game.debug.body(ground);
     //game.debug.body(peach);
     //game.debug.body(brique);
