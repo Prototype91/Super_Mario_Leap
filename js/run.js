@@ -9,9 +9,10 @@ function preload() {
     game.load.image('peach', 'assets/img/peach.png');
     game.load.image('brique', 'assets/img/brique.png');
     game.load.image('spikes', 'assets/img/spikes.png');
-    //game.load.image('ground', 'assets/background.jpg');
     // -- Chargement de nos son utilisé dans le jeux 
     game.load.audio('musique_fond', 'assets/sounds/musique_fond.mp3');
+    game.load.audio('saut', 'assets/sounds/saut.mp3');
+    game.load.audio('fall', 'assets/sounds/fall.mp3');
 }
 
 // --Déclarations de nos variables :
@@ -30,11 +31,6 @@ let spikes;
 let music;
 let vieText;
 let vie = 3;
-//let ground;
-
-// -- Déclaration de variable timer 
-//let timerText;
-//let timer = 0;
 
 //Fonction permettant la création du jeu :
 function create() {
@@ -58,7 +54,7 @@ function create() {
     traps_create();
 
     // -- Rentrer en collision avec les limites du monde comme s'il s'aggissait d'éléments rigides
-    player.body.collideWorldBounds = false;
+    player.body.collideWorldBounds = true;
     // -- Immobilité du joueur 
     peach.body.immovable = false;
     // -- Gravité lors de la descente 
@@ -68,13 +64,10 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    // -- Timing
-    //timerText = game.add.text(5, 5, 'Temps: 0.0s', { font: '18px Arial', fill: '#ffff00' });
-    // -- Gére l'incrémentation du timer 
-    //setInterval(() => timer += 100, 100);
-
     // -- Ajout de notre son au jeux
     music = game.add.audio('musique_fond');
+    saut = game.add.audio('saut');
+    fall = game.add.audio('fall');
 
     // -- Play de la music
     music.play();
@@ -83,6 +76,7 @@ function create() {
     vieText = game.add.text(5, 5, 'Vie(s) : ' + vie, { font: '18px Arial', fill: '#ffffff' });
     vieText.x = 25;
     vieText.y = 25;
+    vieText.fixedToCamera = true;
 
 }
 
@@ -108,25 +102,21 @@ function update() {
         console.log(vie);
         let minus_vie = vie - 1
         vieText.setText('Vie(s) : ' + (minus_vie));
-        console.log("Life :",minus_vie);
+        fall.play();
+        //console.log("Life :", minus_vie);
         //player = game.add.sprite(32, 320, 'dude');
         player.kill();
         //peach.kill();
         facing = 'right';
         player_create();
         vie = minus_vie;
-    });  
+    });
 
-    // -- On repasse minus 
-    //minus = false;
-
-    //player.kill();
-    //alert("GAME OVER !");
-    //window.location = "game_over.html"; // -- on appelle notre page game over 
+    if(jumpButton.isDown){
+        saut.play();
+    }
 
     game.physics.arcade.collide(player, peach, (player, platform) => {
-        //peach.kill();
-        //alert("WELL DONE !");
         window.location = "victoire.html"; // -- on appelle notre page victoire 
     });
 
@@ -146,9 +136,6 @@ function update() {
     if (vie <= 0) {
         window.location = "game_over.html"; // -- on appelle notre page game over
     }
-
-    // -- Affichage du temps 
-    //timerText.setText('Temps: ' + (timer / 1000).toFixed(1) + 's');
 
     minus = false;
 
