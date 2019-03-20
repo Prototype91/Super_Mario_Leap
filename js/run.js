@@ -6,7 +6,7 @@ function preload() {
     // -- Chargement de nos images utilisées dans le jeux
     game.load.spritesheet('mario', 'assets/img/mario_final.png', 40, 40);
     game.load.image('background', 'assets/img/background.jpg');
-    game.load.image('peach', 'assets/img/peach.png');
+    game.load.image('peach', 'assets/img/peach2.png');
     game.load.image('brique', 'assets/img/brique.png');
     game.load.image('spikes', 'assets/img/spikes.png');
     // -- Chargement de nos son utilisé dans le jeux 
@@ -39,10 +39,10 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     // -- Dimension du monde
-    game.world.setBounds(0, 0, 1920, 600);
+    game.world.setBounds(0, 0, 2320, 600);
 
     // -- Affichage de notre background
-    background = game.add.tileSprite(0, 0, 1920, 600, 'background');
+    background = game.add.tileSprite(0, 0, 2320, 600, 'background');
 
     // -- On définit la gravity en y 
     game.physics.arcade.gravity.y = 300;
@@ -97,7 +97,6 @@ function update() {
     game.physics.arcade.collide(peach, trapsGroup);
 
     //console.log(vie);
-
     game.physics.arcade.collide(player, trapsGroup, (player, platform) => {
         console.log(vie);
         let minus_vie = vie - 1

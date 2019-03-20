@@ -14,6 +14,7 @@ function player_create() {
     player.body.collideWorldBounds = true;
     player.body.gravity.y = 1000;
     player.body.maxVelocity.y = 500;
+    player.scale.setTo(0.7, 0.7);
 
     // -- Permet de gérer les différents sprites de notre player 
     player.animations.add('left', [1, 2, 3, 4, 5], 10, true);
@@ -23,14 +24,14 @@ function player_create() {
 
 function peach_create(){
 
-    peach = game.add.sprite(1850, 200, 'peach');
+    peach = game.add.sprite(2250, 200, 'peach');
     game.physics.enable(peach, Phaser.Physics.ARCADE);
 
     // -- Collision / Gravité / Vélocité pour peach / Taille
     peach.body.collideWorldBounds = true;
     peach.body.gravity.y = 1000;
     peach.body.maxVelocity.y = 500;
-    peach.scale.setTo(0.025, 0.025); // -- gérer la taille de la princesse 
+    peach.scale.setTo(0.09, 0.09); // -- gérer la taille de la princesse 
 
 }
 
@@ -115,7 +116,7 @@ function player_move() {
             }
             else
             {
-                player.frame = 5;
+                player.frame = 6;
             }
 
             facing = 'idle';
