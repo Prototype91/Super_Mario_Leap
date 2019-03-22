@@ -22,7 +22,7 @@ function player_create() {
     player.animations.add('right', [7, 8, 9, 10, 11], 10, true);
 }
 
-function peach_create(){
+function peach_create() {
 
     peach = game.add.sprite(3098, 485, 'peach');
     game.physics.enable(peach, Phaser.Physics.ARCADE);
@@ -37,15 +37,15 @@ function peach_create(){
 
 // -- Function update du joueur 
 /* Condition pour savoir si utiliser le LEAP ou alors les touches du clavier */
-function player_update()  {
+function player_update() {
 
     player.body.velocity.x = 0;
     //console.log(LEAP.position.x)
 
-    if (LEAP.connected == true){
+    if (LEAP.connected == true) {
         player_move_leap();
 
-    }else{
+    } else {
         player_move();
     }
 }
@@ -62,20 +62,19 @@ function player_move_leap() {
         player.body.velocity.x = -150;
         player.animations.play('left');
         facing = 'left';
-    } else{
-        if (facing != 'idle'){
+    } else {
+        if (facing != 'idle') {
             player.animations.stop();
-        if (facing == 'left'){
-            player.frame = 0;
-        }else{
-            player.frame = 6;
-        }
+            if (facing == 'left') {
+                player.frame = 0;
+            } else {
+                player.frame = 6;
+            }
             facing = 'idle';
         }
     }
 
-    if (LEAP.grab && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer)
-    {
+    if (LEAP.grab && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer) {
         player.body.velocity.y = -500;
         jumpTimer = game.time.now + 750;
     }
@@ -84,38 +83,31 @@ function player_move_leap() {
 // -- Function déplacement du joueur
 function player_move() {
 
-    if (cursors.left.isDown){
+    if (cursors.left.isDown) {
 
         player.body.velocity.x = -150;
 
-        if (facing != 'left')
-        {
+        if (facing != 'left') {
             player.animations.play('left');
             facing = 'left';
         }
     }
-    else if (cursors.right.isDown)
-    {
+    else if (cursors.right.isDown) {
         player.body.velocity.x = 150;
 
-        if (facing != 'right')
-        {
+        if (facing != 'right') {
             player.animations.play('right');
             facing = 'right';
         }
     }
-    else
-    {
-        if (facing != 'idle')
-        {
+    else {
+        if (facing != 'idle') {
             player.animations.stop();
 
-            if (facing == 'left')
-            {
+            if (facing == 'left') {
                 player.frame = 0;
             }
-            else
-            {
+            else {
                 player.frame = 6;
             }
 
@@ -124,8 +116,7 @@ function player_move() {
     }
 
     // -- Condition pour gérer les sauts dans tous les cas
-    if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer)
-    {
+    if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer) {
         player.body.velocity.y = -500;
         jumpTimer = game.time.now + 750;
     }

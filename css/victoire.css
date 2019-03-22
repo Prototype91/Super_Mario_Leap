@@ -1,10 +1,16 @@
 body {
     margin:0;
     padding:0;
-    background-image: url("../assets/img/mario.gif");
+    /*background-image: url("../assets/img/mario-peach.gif");*/
     background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: no-repeat;   
+    background-color: black;
+}
+
+img{
+    position: absolute;
+    top: 30%;
+    left : 40%;
 }
 
 #victoire{
@@ -22,7 +28,7 @@ p{
     left : 51%;
     font-style: italic;
     font-size: 120%;
-    color: black;
+    color: white;
 }
 
 span{
@@ -35,7 +41,7 @@ span{
 }
 
 #auteur{
-    color : black;
+    color : white;
     position : absolute;
     top: 94%; left: 1%;
     font-style : italic;

@@ -111,7 +111,7 @@ function update() {
         vie = minus_vie;
     });
 
-    if(jumpButton.isDown){
+    if (jumpButton.isDown) {
         saut.play();
     }
 
