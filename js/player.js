@@ -44,7 +44,6 @@ function player_update() {
 
     if (LEAP.connected == true) {
         player_move_leap();
-
     } else {
         player_move();
     }
@@ -77,6 +76,7 @@ function player_move_leap() {
     if (LEAP.grab && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer) {
         player.body.velocity.y = -500;
         jumpTimer = game.time.now + 750;
+        saut.play();
     }
 }
 

@@ -14,12 +14,14 @@ Reach Princess Peach without falling and touching the spikes using your keyboard
 `npm install` to have all the packages needed in you computer.
 Connect your leap motion device if you have one to increase the difficulty !
 
-# Contributing :
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
 # Execution :
 
 Execute Super Mario Leap with `live-server` to enjoy the game !
 
-Good luck !
+Good luck 
+
+# Contributing :
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+!
